@@ -55,7 +55,7 @@ const IS_WINNER = (gameState) => {
 const IS_BOARD_FULL = (gameState) => {
 	for (let row = 0; row < gameState.board.length; row++) {
 		for (let column = 0; column < gameState.board[row].length; column++) {
-			if (gameState.board[row][column].length === 0)
+			if (gameState.board[row][column] === "")
 				return false
 		}
 	}
