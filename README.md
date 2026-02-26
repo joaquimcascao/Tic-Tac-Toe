@@ -11,5 +11,3 @@ Two-player turn-based gameplay (X and O)
 Win detection (rows, columns, diagonals)
 Draw detection
 Game state management
-
-This project was created to practice fundamental programming concepts and version control using Git and GitHub.
