@@ -85,7 +85,7 @@ let renderASCIIBoard = (board) => {
 
 let startBoard = (board) => {
 	if (gameState.status === "RUNNING")
-	renderASCIIBoard(board)
+		renderASCIIBoard(board)
 } 
 
 startBoard(gameState.board)
@@ -116,7 +116,7 @@ let playTicTacToe = (gameState, position) => {
 
 	let isWin = IS_WINNER(gameState)
 
-	if (isWin !== false) {
+	if (isWin) {
 		console.log(`"${gameState.currentTurn}" Wins!`)
 		gameState.status = "FINISHED"
 		return gameState.board
@@ -124,7 +124,7 @@ let playTicTacToe = (gameState, position) => {
 
 	let gameResultDraw = IS_BOARD_FULL(gameState)
 
-	if (gameResultDraw !== false) {
+	if (gameResultDraw) {
 		console.log(`It's a draw!`)
 		gameState.status = "FINISHED"
 		return gameState.board
