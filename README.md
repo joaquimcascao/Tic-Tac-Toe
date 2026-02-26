@@ -1,4 +1,4 @@
-# Tic Tac Toe — Console
+# Tic Tac Toe (TTT)
 
 A simple Tic Tac Toe game that runs in the console using plain JavaScript.
 
