@@ -23,7 +23,7 @@ const GAME_STATES = {
 	DRAW: 2
 }
 
-const IS_WINNER = (gameState) => {
+let isWinner = (gameState) => {
 	for (let row = 0; row < gameState.board.length; row++) {
 		if (gameState.board[row][0] === gameState.currentTurn &&
 			gameState.board[row][1] === gameState.currentTurn &&
@@ -52,7 +52,7 @@ const IS_WINNER = (gameState) => {
 	return false
 }
 
-const IS_BOARD_FULL = (gameState) => {
+let isBoardFull = (gameState) => {
 	for (let row = 0; row < gameState.board.length; row++) {
 		for (let column = 0; column < gameState.board[row].length; column++) {
 			if (gameState.board[row][column] === "")
@@ -114,7 +114,7 @@ let playTicTacToe = (gameState, position) => {
 
 	renderASCIIBoard(gameState.board)
 
-	let isWin = IS_WINNER(gameState)
+	let isWin = isWinner(gameState)
 
 	if (isWin) {
 		console.log(`"${gameState.currentTurn}" Wins!`)
@@ -122,7 +122,7 @@ let playTicTacToe = (gameState, position) => {
 		return gameState.board
 	}
 
-	let gameResultDraw = IS_BOARD_FULL(gameState)
+	let gameResultDraw = isBoardFull(gameState)
 
 	if (gameResultDraw) {
 		console.log(`It's a draw!`)
@@ -130,19 +130,21 @@ let playTicTacToe = (gameState, position) => {
 		return gameState.board
 	}
 
-	gameState.currentTurn = gameState.currentTurn === TURNS.X ? TURNS.O : TURNS.X
+	gameState.currentTurn =
+	 gameState.currentTurn === TURNS.X ? TURNS.O : TURNS.X
 
 	return gameState.board
 }
 
 /*
-// O wins:
+// Test "O" wins:
 playTicTacToe(gameState, { y: 0, x: 0 })
 playTicTacToe(gameState, { y: 1, x: 1 })
 playTicTacToe(gameState, { y: 1, x: 0 })
 playTicTacToe(gameState, { y: 1, x: 2 })
 playTicTacToe(gameState, { y: 2, x: 0 })
 */
+
 
 
 
