@@ -1,6 +1,6 @@
 # Tic Tac Toe — Console
 
-A simple Tic Tac Toe game that runs in the terminal using plain JavaScript.
+A simple Tic Tac Toe game that runs in the console using plain JavaScript.
 
 ## Overview
 This project implements the classic Tic Tac Toe game logic for two players in a console environment.
