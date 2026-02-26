@@ -83,6 +83,13 @@ let renderASCIIBoard = (board) => {
 	console.log(result)
 }
 
+let startBoard = (board) => {
+	if (gameState.status === "RUNNING")
+	renderASCIIBoard(board)
+} 
+
+startBoard(gameState.board)
+
 let playTicTacToe = (gameState, position) => {
 	if (gameState.status !== "RUNNING") return gameState.board
 
@@ -128,12 +135,15 @@ let playTicTacToe = (gameState, position) => {
 	return gameState.board
 }
 
+/*
 // O wins:
 playTicTacToe(gameState, { y: 0, x: 0 })
 playTicTacToe(gameState, { y: 1, x: 1 })
 playTicTacToe(gameState, { y: 1, x: 0 })
 playTicTacToe(gameState, { y: 1, x: 2 })
 playTicTacToe(gameState, { y: 2, x: 0 })
+*/
+
 
 
 
