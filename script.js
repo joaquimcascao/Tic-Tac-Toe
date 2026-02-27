@@ -86,30 +86,35 @@ let renderASCIIBoard = (board) => {
 let startBoard = (board) => {
 	if (gameState.status === "RUNNING")
 		renderASCIIBoard(board)
-} 
+}
+let isOutOfBounds = (board, position) => {
+	if (position.y < 0 ||
+		position.x < 0 ||
+		position.y > board.length - 1 ||
+		position.x > board.length - 1)
+		return true
+}
+
+let isPositionFull = (board, position) => {
+	if (board[position.y][position.x] !== "")
+		return true
+}
+let isMoveInvalid = (board, position) => {
+	if (isOutOfBounds(board, position))
+		return true
+	return isPositionFull(board, position)
+}
 
 startBoard(gameState.board)
 
 let playTicTacToe = (gameState, position) => {
 	if (gameState.status !== "RUNNING") return gameState.board
 
-	let isOutOfBounds =
-		position.y < 0 ||
-		position.x < 0 ||
-		position.y > gameState.board.length - 1 ||
-		position.x > gameState.board.length - 1;
-
-	if (isOutOfBounds) {
-		console.log("Out of bound")
+	if (isMoveInvalid(gameState.board, position)) {
+		console.error("Invalid move!")
 		return gameState.board
 	}
 
-	let isValidPosition = gameState.board[position.y][position.x] === ""
-
-	if (!isValidPosition) {
-		console.log("Invalid position")
-		return gameState.board
-	}
 	gameState.board[position.y][position.x] = gameState.currentTurn
 
 	renderASCIIBoard(gameState.board)
@@ -131,7 +136,7 @@ let playTicTacToe = (gameState, position) => {
 	}
 
 	gameState.currentTurn =
-	 gameState.currentTurn === TURNS.X ? TURNS.O : TURNS.X
+		gameState.currentTurn === TURNS.X ? TURNS.O : TURNS.X
 
 	return gameState.board
 }
