@@ -152,13 +152,14 @@ let playTicTacToe = (gameState, position) => {
 	return gameState.board
 }
 
-
+/*
 // Test "O" wins:
 playTicTacToe(gameState, { y: 0, x: 0 })
 playTicTacToe(gameState, { y: 1, x: 1 })
 playTicTacToe(gameState, { y: 1, x: 0 })
 playTicTacToe(gameState, { y: 1, x: 2 })
 playTicTacToe(gameState, { y: 2, x: 0 })
+*/
 
 
 
