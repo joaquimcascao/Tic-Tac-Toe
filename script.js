@@ -105,6 +105,30 @@ let isMoveInvalid = (board, position) => {
 	return isPositionFull(board, position)
 }
 
+let checkGameOver = (gameState) => {
+	let gameResultWin = isWinner(gameState)
+
+	if (gameResultWin) {
+		console.log(`"${gameState.currentTurn}" Wins!`)
+		gameState.status = "FINISHED"
+		return true
+	}
+
+	let gameResultDraw = isBoardFull(gameState)
+
+	if (gameResultDraw) {
+		console.log(`It's a draw!`)
+		gameState.status = "FINISHED"
+		return true
+	}
+}
+
+let changeCurrentTurn = (gameState) => {
+	gameState.currentTurn =
+		gameState.currentTurn === TURNS.X ? TURNS.O : TURNS.X
+	return gameState.currentTurn
+}
+
 startBoard(gameState.board)
 
 let playTicTacToe = (gameState, position) => {
@@ -119,36 +143,23 @@ let playTicTacToe = (gameState, position) => {
 
 	renderASCIIBoard(gameState.board)
 
-	let isWin = isWinner(gameState)
-
-	if (isWin) {
-		console.log(`"${gameState.currentTurn}" Wins!`)
-		gameState.status = "FINISHED"
+	if (checkGameOver(gameState)) {
 		return gameState.board
 	}
 
-	let gameResultDraw = isBoardFull(gameState)
-
-	if (gameResultDraw) {
-		console.log(`It's a draw!`)
-		gameState.status = "FINISHED"
-		return gameState.board
-	}
-
-	gameState.currentTurn =
-		gameState.currentTurn === TURNS.X ? TURNS.O : TURNS.X
+	changeCurrentTurn(gameState)
 
 	return gameState.board
 }
 
-/*
+
 // Test "O" wins:
 playTicTacToe(gameState, { y: 0, x: 0 })
 playTicTacToe(gameState, { y: 1, x: 1 })
 playTicTacToe(gameState, { y: 1, x: 0 })
 playTicTacToe(gameState, { y: 1, x: 2 })
 playTicTacToe(gameState, { y: 2, x: 0 })
-*/
+
 
 
 
