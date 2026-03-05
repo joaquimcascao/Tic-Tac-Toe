@@ -64,19 +64,19 @@ let isBoardFull = (gameState) => {
 
 let renderASCIIBoard = (board) => {
 	let row0 =
-		`${board[0][0] === "" ? "" : board[0][0]}|` +
-		`${board[0][1] === "" ? "" : board[0][1]}|` +
-		`${board[0][2] === "" ? "" : board[0][2]}\n-+-+-\n`
+		`${board[0][0] === "" ? " " : board[0][0]}|` +
+		`${board[0][1] === "" ? " " : board[0][1]}|` +
+		`${board[0][2] === "" ? " " : board[0][2]}\n-+-+-\n`
 
 	let row1 =
-		`${board[1][0] === "" ? "" : board[1][0]}|` +
-		`${board[1][1] === "" ? "" : board[1][1]}|` +
-		`${board[1][2] === "" ? "" : board[1][2]}\n-+-+-\n`
+		`${board[1][0] === "" ? " " : board[1][0]}|` +
+		`${board[1][1] === "" ? " " : board[1][1]}|` +
+		`${board[1][2] === "" ? " " : board[1][2]}\n-+-+-\n`
 
 	let row2 =
-		`${board[2][0] === "" ? "" : board[2][0]}|` +
-		`${board[2][1] === "" ? "" : board[2][1]}|` +
-		`${board[2][2] === "" ? "" : board[2][2]}`
+		`${board[2][0] === "" ? " " : board[2][0]}|` +
+		`${board[2][1] === "" ? " " : board[2][1]}|` +
+		`${board[2][2] === "" ? " " : board[2][2]}`
 
 
 	let result = row0 + row1 + row2
@@ -153,7 +153,7 @@ let playTicTacToe = (gameState, position) => {
 }
 
 /*
-// Test "O" wins:
+// "O" wins
 playTicTacToe(gameState, { y: 0, x: 0 })
 playTicTacToe(gameState, { y: 1, x: 1 })
 playTicTacToe(gameState, { y: 1, x: 0 })
