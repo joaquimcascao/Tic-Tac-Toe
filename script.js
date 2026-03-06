@@ -23,33 +23,55 @@ const GAME_STATES = {
 	DRAW: 2
 }
 
-let isWinner = (gameState) => {
+let isWinnerRow = (gameState) => {
 	for (let row = 0; row < gameState.board.length; row++) {
-		if (gameState.board[row][0] === gameState.currentTurn &&
-			gameState.board[row][1] === gameState.currentTurn &&
-			gameState.board[row][2] === gameState.currentTurn) {
-			return true
-		}
-	}
-	for (let column = 0; column < gameState.board.length; column++) {
-		if (gameState.board[0][column] === gameState.currentTurn &&
-			gameState.board[1][column] === gameState.currentTurn &&
-			gameState.board[2][column] === gameState.currentTurn) {
-			return true
-		}
-	}
+		let count = 0
 
-	if (gameState.board[0][2] === gameState.currentTurn &&
-		gameState.board[1][1] === gameState.currentTurn &&
-		gameState.board[2][0] === gameState.currentTurn) {
-		return true
+		for (let column = 0; column < gameState.board[row].length; column++) {
+			if (gameState.board[row][column] === gameState.currentTurn) {
+				count++
+			}
+		}
+		if (count === gameState.board.length)
+			return true
 	}
-	if (gameState.board[0][0] === gameState.currentTurn &&
-		gameState.board[1][1] === gameState.currentTurn &&
-		gameState.board[2][2] === gameState.currentTurn) {
-		return true
+}
+
+let isWinnerColumn = (gameState) => {
+	for (let column = 0; column < gameState.board.length; column++) {
+		let count = 0
+
+		for (let row = 0; row < gameState.board[column].length; row++) {
+			if (gameState.board[row][column] === gameState.currentTurn) {
+				count++
+			}
+		}
+		if (count === gameState.board.length)
+			return true
 	}
+}
+
+let isWinnerDiagonals = () => {
+if (gameState.board[0][2] === gameState.currentTurn &&
+	gameState.board[1][1] === gameState.currentTurn &&
+	gameState.board[2][0] === gameState.currentTurn) {
+	return true
+}
+if (gameState.board[0][0] === gameState.currentTurn &&
+	gameState.board[1][1] === gameState.currentTurn &&
+	gameState.board[2][2] === gameState.currentTurn) {
+	return true
+}
+return false
+}
+
+let isWinner = (gameState) => {
+	if (isWinnerRow(gameState) ||
+	 isWinnerColumn(gameState) ||
+	 isWinnerDiagonals(gameState))
+		return true
 	return false
+
 }
 
 let isBoardFull = (gameState) => {
@@ -153,10 +175,28 @@ let playTicTacToe = (gameState, position) => {
 }
 
 /*
-// "O" wins
+// "O" wins (Row)
+playTicTacToe(gameState, { y: 0, x: 0 })
+playTicTacToe(gameState, { y: 1, x: 1 })
+playTicTacToe(gameState, { y: 0, x: 1 })
+playTicTacToe(gameState, { y: 2, x: 0 })
+playTicTacToe(gameState, { y: 0, x: 2 })
+*/
+
+/*
+// "O" wins (Column)
 playTicTacToe(gameState, { y: 0, x: 0 })
 playTicTacToe(gameState, { y: 1, x: 1 })
 playTicTacToe(gameState, { y: 1, x: 0 })
 playTicTacToe(gameState, { y: 1, x: 2 })
 playTicTacToe(gameState, { y: 2, x: 0 })
+*/
+
+/*
+// "O" wins (Diagonal)
+playTicTacToe(gameState, { y: 0, x: 0 })
+playTicTacToe(gameState, { y: 0, x: 2 })
+playTicTacToe(gameState, { y: 1, x: 1 })
+playTicTacToe(gameState, { y: 1, x: 2 })
+playTicTacToe(gameState, { y: 2, x: 2 })
 */
